@@ -7,7 +7,7 @@ from utilities import tic, toc
 n = 10000
 
 tic()
-results = [combat_loop() for _ in range(n)]
+results = combat_loop()
 toc()
 
-print(f"Win percentage: {results.count("Heroes Win")/n*100}%")
+print(results)

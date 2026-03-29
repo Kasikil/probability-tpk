@@ -20,12 +20,60 @@
             "damage_die": 12,
             "ability": "Strength"
         },
+        "health_potions": {
+            "potion_of_healing": 1,
+            "greater_potion_of_healing": 0,
+            "superior_potion_of_healing": 0,
+            "supreme_potion_of_healing": 0
+        },
         "reactions": 1,
         "legenary_actions": 0,
         "hp_max": 57,
         "current_hp": 57
     },
 {
+        "name": "Bobblin",
+        "hero": 0,
+        "char_class": "Fighter",
+        "level": 1,
+        "race": "Goblin",
+        "ac": 13,
+        "scores": { "Strength": 8, "Dexterity": 14, "Constitution": 10, "Intelligence": 10, "Wisdom": 8, "Charisma": 8 },
+        "skill_proficiencies": [],
+        "weapon": { "name": "Scimitar", "damage_die": 6, "ability": "Dexterity" },
+        "health_potions": {
+            "potion_of_healing": 1,
+            "greater_potion_of_healing": 0,
+            "superior_potion_of_healing": 0,
+            "supreme_potion_of_healing": 0
+        },
+        "reactions": 1,
+        "legenary_actions": 0,
+        "hp_max": 11,
+        "current_hp": 11
+    },
+    {
+        "name": "Roblin",
+        "hero": 0,
+        "char_class": "Fighter",
+        "level": 1,
+        "race": "Goblin",
+        "ac": 13,
+        "scores": { "Strength": 8, "Dexterity": 14, "Constitution": 10, "Intelligence": 10, "Wisdom": 8, "Charisma": 8 },
+        "skill_proficiencies": [],
+        "weapon": { "name": "Scimitar", "damage_die": 6, "ability": "Dexterity" },
+        "health_potions": {
+            "potion_of_healing": 1,
+            "greater_potion_of_healing": 0,
+            "superior_potion_of_healing": 0,
+            "supreme_potion_of_healing": 0
+        },
+        "reactions": 1,
+        "legenary_actions": 0,
+        "hp_max": 11,
+        "current_hp": 111
+    },
+    {
         "name": "Goblin",
         "hero": 0,
         "char_class": "Fighter",
@@ -35,9 +83,15 @@
         "scores": { "Strength": 8, "Dexterity": 14, "Constitution": 10, "Intelligence": 10, "Wisdom": 8, "Charisma": 8 },
         "skill_proficiencies": [],
         "weapon": { "name": "Scimitar", "damage_die": 6, "ability": "Dexterity" },
+        "health_potions": {
+            "potion_of_healing": 1,
+            "greater_potion_of_healing": 0,
+            "superior_potion_of_healing": 0,
+            "supreme_potion_of_healing": 0
+        },
         "reactions": 1,
         "legenary_actions": 0,
-        "hp_max": 57,
-        "current_hp": 57
+        "hp_max": 11,
+        "current_hp": 11
     }
 ]

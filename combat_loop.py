@@ -49,7 +49,7 @@ def combat_loop():
             target = select_target(characters, char, action)
             
             log = char.perform_action(action, target)
-            print(log)
+            #print(log)
 
             # # Choice Bonus Action or Action first
             # # Choose Available Character Action - character.choose_action()
@@ -63,6 +63,3 @@ def combat_loop():
     # Character should have primary choices
     # Optomize for Damage Done - support actions weighted too
     # Choose heal when below a certain percentage?
-
-end_str = combat_loop()
-print(end_str)

@@ -29,6 +29,7 @@ class Character:
         self.legendary_actions = data.get("legenary_actions", 0)
         self.ac = data.get("ac", 10) # Default to 10
         self.hero_status = data.get("hero", 1) # 1 for Hero, 0 for Enemy
+        self.health_potions = data.get("health_potions", [])
         
         # Ability Scores (default to 10 if missing)
         self.scores = data.get("scores", {
@@ -73,9 +74,10 @@ class Character:
     def _score_heal(self, state):
         # Highly weighted only if the character is hurt
         hp_percent = self.current_hp / self.hp_max
-        if hp_percent < 0.3:
+        potion_count = self.health_potions["supreme_potion_of_healing"] + self.health_potions["superior_potion_of_healing"] + self.health_potions["greater_potion_of_healing"] + self.health_potions["potion_of_healing"]
+        if hp_percent < 0.3 and potion_count > 0:
             return 40  # Emergency healing
-        if hp_percent < 0.7:
+        if hp_percent < 0.7  and potion_count > 0:
             return 10  # Moderate need
         return -50     # Don't heal if healthy
 
@@ -102,7 +104,7 @@ class Character:
         if action_name == "Attack" and target:
             return self.execute_attack(target)
         elif action_name == "Heal":
-            self.heal(random.randint(1, 8) + self.get_modifier("Wisdom")) # Suspect default to wisdom
+            self.heal()
         return f"{self.name} used {action_name}"
 
     def execute_attack(self, target):
@@ -179,8 +181,23 @@ class Character:
             return
             # print(f"{self.name} took {amount} damage. Current HP: {self.current_hp}/{self.hp_max}")
 
-    def heal(self, amount):
+    def heal(self):
         """Restores HP without exceeding the maximum."""
+        amount = 0
+
+        if self.health_potions["supreme_potion_of_healing"] > 0:
+            amount = sum([random.randint(1, 4) for _ in range(10)]) + 20
+            self.health_potions["supreme_potion_of_healing"] -= 1
+        elif self.health_potions["superior_potion_of_healing"] > 0:
+            amount = sum([random.randint(1, 4) for _ in range(8)]) + 8
+            self.health_potions["superior_potion_of_healing"] -= 1
+        elif self.health_potions["greater_potion_of_healing"] > 0:
+            amount = sum([random.randint(1, 4) for _ in range(4)]) + 4
+            self.health_potions["greater_potion_of_healing"] -= 1
+        elif self.health_potions["potion_of_healing"] > 0:
+            amount = sum([random.randint(1, 4) for _ in range(2)]) + 2
+            self.health_potions["potion_of_healing"] -= 1
+        
         self.current_hp += amount
         if self.current_hp > self.hp_max:
             self.current_hp = self.hp_max
