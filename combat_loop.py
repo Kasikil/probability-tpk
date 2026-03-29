@@ -5,7 +5,7 @@ from character import Character
 
 
 
-def combat_loop():
+def combat_loop(input_file_path):
     # Initialize variables
     characters = []
     enemies = []
@@ -20,7 +20,7 @@ def combat_loop():
     reportables = []
 
     # Initialize characters, enemies & populate their variables - JSON - this also rolls initative
-    characters = load_characters("characters.json")
+    characters = load_characters(input_file_path)
 
     # Organize characters by initative
     characters.sort(key=lambda c: (c.initiative, c.scores['Dexterity']), reverse=True)

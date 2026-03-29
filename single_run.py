@@ -7,7 +7,7 @@ from utilities import tic, toc
 n = 10000
 
 tic()
-results = combat_loop()
+results = combat_loop("characters.json")
 toc()
 
 print(results)

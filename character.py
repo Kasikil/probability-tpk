@@ -20,6 +20,8 @@ class Character:
         "Wizard": 6
     }
 
+    FUZZ = True
+
     def __init__(self, data):
         self.name = data.get("name", "Unknown Hero")
         self.char_class = data.get("char_class", "Fighter")
@@ -45,7 +47,10 @@ class Character:
             self.equipped_weapon = Weapon(
                 name=weapon_data["name"],
                 damage_die=weapon_data["damage_die"],
-                ability=weapon_data.get("ability", "Strength")
+                die_count=weapon_data["die_count"],
+                ability=weapon_data.get("ability", "Strength"),
+                magic_bonus=weapon_data.get("magic_bonus", 0),
+                extra_damage=weapon_data.get("extra_damage",None)
             )
         else:
             self.equipped_weapon = None
@@ -82,6 +87,9 @@ class Character:
         return -50     # Don't heal if healthy
 
     def decide_action(self, encounter_state):
+        if self.FUZZ:
+            return self.get_fuzzy_action(encounter_state)
+
         best_action = None
         highest_score = -float('inf')
 
@@ -94,6 +102,18 @@ class Character:
                 best_action = action["name"]
 
         return best_action
+    
+    def get_fuzzy_action(self, state):
+        actions = []
+        weights = []
+        
+        for action in self.possible_actions:
+            score = max(0, action["base_weight"] + action["logic"](state))
+            actions.append(action["name"])
+            weights.append(score)
+    
+        # Returns a random action, but higher scores have a much higher chance
+        return random.choices(actions, weights=weights, k=1)[0]
 
     def take_turn(self, encounter_state):
         chosen_name = self.decide_action(encounter_state)
@@ -113,7 +133,7 @@ class Character:
 
         # Roll to hit: d20 + Ability Mod + Proficiency
         mod = self.get_modifier(self.equipped_weapon.ability)
-        _, total_to_hit = self.roll_d20(mod + self.proficiency_bonus)
+        _, total_to_hit = self.roll_d20(mod + self.proficiency_bonus + self.equipped_weapon.magic_bonus)
 
         # 5e Logic: Check against Target Armor Class
         if total_to_hit >= target.ac:

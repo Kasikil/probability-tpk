@@ -18,7 +18,10 @@
         "weapon": {
             "name": "Greataxe",
             "damage_die": 12,
-            "ability": "Strength"
+            "die_count": 1,
+            "ability": "Strength",
+            "magic_bonus": 1,
+            "extra_damage": {"6": "Frost"}
         },
         "health_potions": {
             "potion_of_healing": 1,
@@ -40,7 +43,11 @@
         "ac": 13,
         "scores": { "Strength": 8, "Dexterity": 14, "Constitution": 10, "Intelligence": 10, "Wisdom": 8, "Charisma": 8 },
         "skill_proficiencies": [],
-        "weapon": { "name": "Scimitar", "damage_die": 6, "ability": "Dexterity" },
+        "weapon": { 
+            "name": "Scimitar", 
+            "damage_die": 6, 
+            "die_count": 1,
+            "ability": "Dexterity" },
         "health_potions": {
             "potion_of_healing": 1,
             "greater_potion_of_healing": 0,
@@ -61,7 +68,11 @@
         "ac": 13,
         "scores": { "Strength": 8, "Dexterity": 14, "Constitution": 10, "Intelligence": 10, "Wisdom": 8, "Charisma": 8 },
         "skill_proficiencies": [],
-        "weapon": { "name": "Scimitar", "damage_die": 6, "ability": "Dexterity" },
+        "weapon": { 
+            "name": "Scimitar", 
+            "damage_die": 6, 
+            "die_count": 1,
+            "ability": "Dexterity" },
         "health_potions": {
             "potion_of_healing": 1,
             "greater_potion_of_healing": 0,
@@ -82,7 +93,11 @@
         "ac": 13,
         "scores": { "Strength": 8, "Dexterity": 14, "Constitution": 10, "Intelligence": 10, "Wisdom": 8, "Charisma": 8 },
         "skill_proficiencies": [],
-        "weapon": { "name": "Scimitar", "damage_die": 6, "ability": "Dexterity" },
+        "weapon": { 
+            "name": "Scimitar", 
+            "damage_die": 6, 
+            "die_count": 1,
+            "ability": "Dexterity" },
         "health_potions": {
             "potion_of_healing": 1,
             "greater_potion_of_healing": 0,
