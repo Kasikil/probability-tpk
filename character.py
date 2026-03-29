@@ -27,6 +27,8 @@ class Character:
         self.race = data.get("race", "Human")
         self.reactions = data.get("reactions", 1)
         self.legendary_actions = data.get("legenary_actions", 0)
+        self.ac = data.get("ac", 10) # Default to 10
+        self.hero_status = data.get("hero", 1) # 1 for Hero, 0 for Enemy
         
         # Ability Scores (default to 10 if missing)
         self.scores = data.get("scores", {
@@ -34,7 +36,7 @@ class Character:
             "Intelligence": 10, "Wisdom": 10, "Charisma": 10
         })
 
-        self.initative = 0
+        self.initiative = 0
 
         # Handle Weapon logic from nested dictionary
         weapon_data = data.get("weapon")
@@ -53,7 +55,71 @@ class Character:
         self.hp_max = data.get("hp_max") or self.calculate_initial_hp()
         self.current_hp = data.get("current_hp", self.hp_max)
 
-        self.roll_initative()
+        self.roll_initiative()
+
+        self.possible_actions = [
+            {"name": "Attack", "base_weight": 10, "logic": self._score_attack},
+            {"name": "Heal", "base_weight": 0, "logic": self._score_heal}
+        ]
+
+    def _score_attack(self, state):
+        score = 0
+        if state['enemies_present'] > 0:
+            score += 15
+        if state['target_hp_low']:
+            score += 10 # Prioritize finishing off enemies
+        return score
+
+    def _score_heal(self, state):
+        # Highly weighted only if the character is hurt
+        hp_percent = self.current_hp / self.hp_max
+        if hp_percent < 0.3:
+            return 40  # Emergency healing
+        if hp_percent < 0.7:
+            return 10  # Moderate need
+        return -50     # Don't heal if healthy
+
+    def decide_action(self, encounter_state):
+        best_action = None
+        highest_score = -float('inf')
+
+        for action in self.possible_actions:
+            # Calculate the 'utility' of this action
+            current_score = action["logic"](encounter_state) + action["base_weight"]
+            
+            if current_score > highest_score:
+                highest_score = current_score
+                best_action = action["name"]
+
+        return best_action
+
+    def take_turn(self, encounter_state):
+        chosen_name = self.decide_action(encounter_state)
+        # print(f"{self.name} decides to: {chosen_name}")
+        self.perform_action(chosen_name, target=encounter_state.get('primary_enemy'))
+
+    def perform_action(self, action_name, target=None):
+        if action_name == "Attack" and target:
+            return self.execute_attack(target)
+        elif action_name == "Heal":
+            self.heal(random.randint(1, 8) + self.get_modifier("Wisdom")) # Suspect default to wisdom
+        return f"{self.name} used {action_name}"
+
+    def execute_attack(self, target):
+        if not self.equipped_weapon:
+            return f"{self.name} has no weapon!"
+
+        # Roll to hit: d20 + Ability Mod + Proficiency
+        mod = self.get_modifier(self.equipped_weapon.ability)
+        _, total_to_hit = self.roll_d20(mod + self.proficiency_bonus)
+
+        # 5e Logic: Check against Target Armor Class
+        if total_to_hit >= target.ac:
+            damage = self.equipped_weapon.roll_damage(mod)
+            target.take_damage(damage)
+            return f"{self.name} HITS {target.name} for {damage} damage (Roll: {total_to_hit} vs AC {target.ac})"
+        
+        return f"{self.name} MISSES {target.name} (Roll: {total_to_hit} vs AC {target.ac})"
 
     def calculate_initial_hp(self):
         # (Using the logic from our previous steps)
@@ -120,9 +186,9 @@ class Character:
             self.current_hp = self.hp_max
         #print(f"{self.name} healed for {amount}. Current HP: {self.current_hp}/{self.hp_max}")
 
-    def roll_initative(self):
+    def roll_initiative(self):
         # returns natural_roll, total_result
-        _, self.initative = self.roll_d20(self.get_modifier("Dexterity"))
+        _, self.initiative = self.roll_d20(self.get_modifier("Dexterity"))
     
     def skill_check(self, skill_name, base_ability):
         """Performs a skill check, adding proficiency if applicable."""
@@ -131,29 +197,5 @@ class Character:
             modifier += self.proficiency_bonus
         
         natural, total = self.roll_d20(modifier)
-        print(f"{self.name} rolls {skill_name} ({base_ability}): {natural} + {modifier} = {total}")
+        #print(f"{self.name} rolls {skill_name} ({base_ability}): {natural} + {modifier} = {total}")
         return total
-    
-    def choose_action(self):
-        """
-        actions = {
-            "1": "Attack",
-            "2": "Cast a Spell",
-            /"3": "Dash", #N/A This Version
-            "4": "Disengage", # available to all classes as an action, bonus action for rogues
-            "5": "Dodge",
-            "6": "Help/Support",
-            "7": "Hide",
-            /"8": "Ready", #Future implementation
-            /"9": "Search", #N/A
-            /"10": "Use an Object"
-            "11": Heal Self
-        }
-        """
-        
-        return
-
-# --- Testing the Upgrades ---
-
-
-print(f"Max HP: {grog.hp_max}") # (12+3) + 4*(7+3) = 15 + 40 = 55
