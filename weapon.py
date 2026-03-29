@@ -17,13 +17,13 @@ class Weapon:
         self.magic_bonus = magic_bonus
         self.extra_damage = extra_damage if extra_damage else {}
 
-    def roll_damage(self, modifier):
+    def roll_damage(self, modifier, critical_mod=1):
         """Calculates total damage: (XdY + mod + magic) + (Elemental dice)."""
         # 1. Base Damage (e.g., 2d6)
         base_roll = sum(random.randint(1, self.damage_die) for _ in range(self.die_count))
         
         # 2. Add Modifier and Magic Bonus
-        total_physical = base_roll + modifier + self.magic_bonus
+        total_physical = base_roll*critical_mod + modifier + self.magic_bonus
         
         # 3. Add Elemental Damage (e.g., 1d4 Cold)
         elemental_total = 0
@@ -36,4 +36,4 @@ class Weapon:
 
         # For logging purposes, you might return a dict or a string, 
         # but for simulation math, we usually just need the integer sum.
-        return total_physical + elemental_total
+        return total_physical + elemental_total*critical_mod

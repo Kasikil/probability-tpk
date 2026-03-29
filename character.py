@@ -133,11 +133,16 @@ class Character:
 
         # Roll to hit: d20 + Ability Mod + Proficiency
         mod = self.get_modifier(self.equipped_weapon.ability)
-        _, total_to_hit = self.roll_d20(mod + self.proficiency_bonus + self.equipped_weapon.magic_bonus)
+        base_roll, total_to_hit = self.roll_d20(mod + self.proficiency_bonus + self.equipped_weapon.magic_bonus)
+
+        # Critical Check
+        crit_mod = 1
+        if base_roll == 20:
+            crit_mod = 2
 
         # 5e Logic: Check against Target Armor Class
         if total_to_hit >= target.ac:
-            damage = self.equipped_weapon.roll_damage(mod)
+            damage = self.equipped_weapon.roll_damage(mod, crit_mod)
             target.take_damage(damage)
             return f"{self.name} HITS {target.name} for {damage} damage (Roll: {total_to_hit} vs AC {target.ac})"
         
