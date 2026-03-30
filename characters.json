@@ -32,7 +32,8 @@
         "reactions": 1,
         "legenary_actions": 0,
         "hp_max": 57,
-        "current_hp": 57
+        "current_hp": 57,
+        "allowed_death_saves": 1
     },
 {
         "name": "Bobblin",
@@ -57,7 +58,8 @@
         "reactions": 1,
         "legenary_actions": 0,
         "hp_max": 11,
-        "current_hp": 11
+        "current_hp": 11,
+        "allowed_death_saves": 0
     },
     {
         "name": "Roblin",
@@ -82,7 +84,8 @@
         "reactions": 1,
         "legenary_actions": 0,
         "hp_max": 11,
-        "current_hp": 111
+        "current_hp": 11,
+        "allowed_death_saves": 0
     },
     {
         "name": "Goblin",
@@ -107,6 +110,7 @@
         "reactions": 1,
         "legenary_actions": 0,
         "hp_max": 11,
-        "current_hp": 11
+        "current_hp": 11,
+        "allowed_death_saves": 0
     }
 ]

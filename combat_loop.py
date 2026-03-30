@@ -1,6 +1,7 @@
 import json
+import random
 
-from utilities import load_characters, select_target
+from utilities import load_characters, select_target, process_death_saves
 from character import Character
 
 
@@ -29,7 +30,12 @@ def combat_loop(input_file_path):
     while True:
         state["round"] =+ 1
         for char in characters:
-            if char.current_hp <= 0: continue # Skip dead characters
+            if char.is_dead: continue # Skip dead characters
+
+            if not char.is_conscious and char.current_hp == 0:
+                # If they haven't reached 3 successes/failures yet
+                process_death_saves(char)
+                continue
 
             # 1. Update State
             enemies = [c for c in characters if c.hero_status == 0 and c.current_hp > 0]

@@ -55,3 +55,38 @@ def select_target(all_characters, acting_character, action_type="Attack"):
         return random.choice(allies) if allies else acting_character
 
     return None
+
+def process_death_saves(character):
+    if character.is_conscious or character.is_dead:
+        return
+    
+    if character.allowed_death_saves == 0:
+        character.is_dead = True
+        return
+
+    roll = random.randint(1, 20)
+    
+    if roll == 20:
+        character.hp = 1
+        character.is_conscious = True
+        character.death_successes = 0
+        character.death_failures = 0
+        #print(f"✨ {character.name} rolled a 20 and regained consciousness!")
+    elif roll >= 10:
+        character.death_successes += 1
+        #print(f"👍 {character.name} saved (S:{character.death_successes} F:{character.death_failures})")
+    else:
+        # Natural 1 counts as two failures
+        character.death_failures += (2 if roll == 1 else 1)
+        #print(f"💀 {character.name} failed (S:{character.death_successes} F:{character.death_failures})")
+
+    # Check terminal conditions
+    if character.death_successes >= 3:
+        character.is_conscious = False # Stable but unconscious
+        character.death_successes = 0
+        character.death_failures = 0
+        #print(f"💤 {character.name} is now stable.")
+        
+    if character.death_failures >= 3:
+        character.is_dead = True
+        #print(f"❌ {character.name} has died.")

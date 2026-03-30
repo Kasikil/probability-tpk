@@ -32,6 +32,11 @@ class Character:
         self.ac = data.get("ac", 10) # Default to 10
         self.hero_status = data.get("hero", 1) # 1 for Hero, 0 for Enemy
         self.health_potions = data.get("health_potions", [])
+        self.allowed_death_saves = data.get("allowed_death_saves", 1)
+        self.is_conscious = True
+        self.is_dead = False
+        self.death_successes = 0
+        self.death_failures = 0
         
         # Ability Scores (default to 10 if missing)
         self.scores = data.get("scores", {
@@ -197,10 +202,14 @@ class Character:
         # 5e Instant Death Rule: 
         # If damage reduces you to 0 and the remainder equals or exceeds your max HP.
         if self.current_hp <= -self.hp_max:
-            self.current_hp = 0
+            self.is_dead = True
+            self.is_conscious = False
             # print(f"CRITICAL: {self.name} took massive damage and died instantly!")
         elif self.current_hp <= 0:
             self.current_hp = 0
+            if self.is_conscious:
+                #print(f"--- {self.name} has fallen unconscious! ---")
+                self.is_conscious = False
             # print(f"{self.name} has fallen unconscious (0 HP)!")
         else:
             return
