@@ -22,6 +22,9 @@ class Character:
 
     FUZZ = True
 
+    # Defines how often a spell will be cast when the caster has the option between a physical weapon and a spell
+    spellcaster_spell_attack = 0.9
+
     def __init__(self, data):
         self.name = data.get("name", "Unknown Hero")
         self.char_class = data.get("char_class", "Fighter")
@@ -70,8 +73,13 @@ class Character:
 
         self.possible_actions = [
             {"name": "Attack", "base_weight": 10, "logic": self._score_attack},
-            {"name": "Heal", "base_weight": 0, "logic": self._score_heal}
+            {"name": "Heal", "base_weight": 0, "logic": self._score_heal},
+            {"name": "Buff", "base_weight": -50, "logic": self._score_buff}, #TODO: update inital weight
+            {"name": "Nerf", "base_weight": -50, "logic": self._score_nerf} #TODO: update initial weight
         ]
+
+        self.spell_slots = data.get("spell_slots", []) # Access via self.spell_slots["1st"]["max"]
+        self.spellcasting_ability = data.get("spellcasting_ability","Wisdom") 
 
     def _score_attack(self, state):
         score = 0
@@ -90,6 +98,14 @@ class Character:
         if hp_percent < 0.7  and potion_count > 0:
             return 10  # Moderate need
         return -50     # Don't heal if healthy
+    
+    def _score_buff(self, state):
+        return -50
+        #TODO: Implement
+
+    def _score_nerf(self, state):
+        return -50
+        #TODO: Implement
 
     def decide_action(self, encounter_state):
         if self.FUZZ:
@@ -130,9 +146,20 @@ class Character:
             return self.execute_attack(target)
         elif action_name == "Heal":
             self.heal()
+        elif action_name == "Buff":
+            self.buff()
+        elif action_name == "Nerf":
+            self.nerf()
         return f"{self.name} used {action_name}"
 
     def execute_attack(self, target):
+        
+        can_cast = hasattr(self, 'spell_slots') and any(s['current'] > 0 for s in self.spell_slots.values())
+
+
+        if can_cast and random.random() < self.spellcaster_spell_attack:
+            return self.execute_spell_attack(target)
+        
         if not self.equipped_weapon:
             return f"{self.name} has no weapon!"
 
@@ -152,6 +179,29 @@ class Character:
             return f"{self.name} HITS {target.name} for {damage} damage (Roll: {total_to_hit} vs AC {target.ac})"
         
         return f"{self.name} MISSES {target.name} (Roll: {total_to_hit} vs AC {target.ac})"
+
+    def execute_spell_attack(self, target):
+        # Find the highest available slot
+        #TODO: Implement some fuziness in choosing available level spells
+        available_levels = [lvl for lvl, data in self.spell_slots.items() if data['current'] > 0]
+        best_slot = available_levels[-1] # Grabs the highest string, e.g., "2nd"
+        
+        # Use the slot
+        self.spell_slots[best_slot]['current'] -= 1
+        
+        spell_mod = self.get_modifier(self.spellcasting_ability)
+        base_roll, total_to_hit = self.roll_d20(spell_mod + self.proficiency_bonus)
+        
+        if total_to_hit >= target.ac:
+            # Example: Scale damage by slot level (Level 1 = 2d6, Level 2 = 3d6, etc.)
+            slot_int = int(best_slot[0])
+            
+            #TODO Replace the next three lines of damage logic later
+            damage = sum(random.randint(1, 6) for _ in range(slot_int + 1))
+            target.take_damage(damage)
+            return f"{self.name} casts a {best_slot} level spell! HITS {target.name} for {damage} damage."
+        
+        return f"{self.name} fires a spell at {target.name} but MISSES."
 
     def calculate_initial_hp(self):
         # (Using the logic from our previous steps)
@@ -236,6 +286,14 @@ class Character:
         if self.current_hp > self.hp_max:
             self.current_hp = self.hp_max
         #print(f"{self.name} healed for {amount}. Current HP: {self.current_hp}/{self.hp_max}")
+
+    def buff(self):
+        #TODO: Implement buff functionality with magic
+        pass
+
+    def nerf(self):
+        #TODO: Implement nerf functionality with magic
+        pass
 
     def roll_initiative(self):
         # returns natural_roll, total_result
