@@ -80,6 +80,7 @@ class Character:
 
         self.spell_slots = data.get("spell_slots", []) # Access via self.spell_slots["1st"]["max"]
         self.spellcasting_ability = data.get("spellcasting_ability","Wisdom") 
+        self.spell_list = data.get("spell_list", [])
 
     def _score_attack(self, state):
         score = 0
