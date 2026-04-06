@@ -1,0 +1,360 @@
+[
+    {
+        "name": "Booming Blade",
+        "level": 0,
+        "damage_type": "Thunder",
+        "damage_die": "1d8",
+        "additional_damage": 0
+    },
+    {
+        "name": "Chill Touch",
+        "level": 0,
+        "damage_type": "Necrotic",
+        "damage_die": "1d8",
+        "additional_damage": 0
+    },
+    {
+        "name": "Eldritch Blast",
+        "level": 0,
+        "damage_type": "Force",
+        "damage_die": "1d10",
+        "additional_damage": 0
+    },
+    {
+        "name": "Fire Bolt",
+        "level": 0,
+        "damage_type": "Fire",
+        "damage_die": "1d10",
+        "additional_damage": 0
+    },
+    {
+        "name": "Mind Sliver",
+        "level": 0,
+        "damage_type": "Psychic",
+        "damage_die": "1d6",
+        "additional_damage": 0
+    },
+    {
+        "name": "Poison Spray",
+        "level": 0,
+        "damage_type": "Poison",
+        "damage_die": "1d12",
+        "additional_damage": 0
+    },
+    {
+        "name": "Primal Savagery",
+        "level": 0,
+        "damage_type": "Acid",
+        "damage_die": "1d10",
+        "additional_damage": 0
+    },
+    {
+        "name": "Ray of Frost",
+        "level": 0,
+        "damage_type": "Cold",
+        "damage_die": "1d8",
+        "additional_damage": 0
+    },
+    {
+        "name": "Sapping Sting",
+        "level": 0,
+        "damage_type": "Necrotic",
+        "damage_die": "1d4",
+        "additional_damage": 0
+    },
+    {
+        "name": "Shocking Grasp",
+        "level": 0,
+        "damage_type": "Lightning",
+        "damage_die": "1d8",
+        "additional_damage": 0
+    },
+    {
+        "name": "Toll the Dead",
+        "level": 0,
+        "damage_type": "Necrotic",
+        "damage_die": "1d12",
+        "additional_damage": 0
+    },
+    {
+        "name": "Vicious Mockery",
+        "level": 0,
+        "damage_type": "Psychic",
+        "damage_die": "1d4",
+        "additional_damage": 0
+    },
+    {
+        "name": "Catapult",
+        "level": 1,
+        "damage_type": "Bludgeoning",
+        "damage_die": "8",
+        "die_count": "3",
+        "additional_damage": 0
+    },
+    {
+        "name": "Chaos Bolt",
+        "level": 1,
+        "damage_type": "Varies",
+        "damage_die": "8",
+        "die_count": "2",
+        "additional_damage": 6
+    },
+    {
+        "name": "Chromatic Orb",
+        "level": 1,
+        "damage_type": "Choice",
+        "damage_die": "8",
+        "die_count": "3",
+        "additional_damage": 0
+    },
+    {
+        "name": "Guiding Bolt",
+        "level": 1,
+        "damage_type": "Radiant",
+        "damage_die": "6",
+        "die_count": "4",
+        "additional_damage": 0
+    },
+    {
+        "name": "Inflict Wounds",
+        "level": 1,
+        "damage_type": "Necrotic",
+        "damage_die": "10",
+        "die_count": "3",
+        "additional_damage": 0
+    },
+    {
+        "name": "Magic Missile",
+        "level": 1,
+        "damage_type": "Force",
+        "damage_die": "4",
+        "die_count": "3",
+        "additional_damage": 3
+    },
+    {
+        "name": "Ray of Sickness",
+        "level": 1,
+        "damage_type": "Poison",
+        "damage_die": "8",
+        "die_count": "2",
+        "additional_damage": 0
+    },
+    {
+        "name": "Witch Bolt",
+        "level": 1,
+        "damage_type": "Lightning",
+        "damage_die": "1d12",
+        "additional_damage": 0
+    },
+    {
+        "name": "Cloud of Daggers",
+        "level": 2,
+        "damage_type": "Slashing",
+        "damage_die": "4",
+        "die_count": "4",
+        "additional_damage": 0
+    },
+    {
+        "name": "Crown of Madness",
+        "level": 2,
+        "damage_type": "Psychic",
+        "damage_die": "1d6",
+        "additional_damage": 0
+    },
+    {
+        "name": "Mind Spike",
+        "level": 2,
+        "damage_type": "Psychic",
+        "damage_die": "8",
+        "die_count": "3",
+        "additional_damage": 0
+    },
+    {
+        "name": "Scorching Ray",
+        "level": 2,
+        "damage_type": "Fire",
+        "damage_die": "6",
+        "die_count": "6",
+        "additional_damage": 0
+    },
+    {
+        "name": "Shadow Blade",
+        "level": 2,
+        "damage_type": "Psychic",
+        "damage_die": "8",
+        "die_count": "2",
+        "additional_damage": 0
+    },
+    {
+        "name": "Spiritual Weapon",
+        "level": 2,
+        "damage_type": "Force",
+        "damage_die": "1d8",
+        "additional_damage": 0
+    },
+    {
+        "name": "Bestow Curse",
+        "level": 3,
+        "damage_type": "Necrotic",
+        "damage_die": "1d8",
+        "additional_damage": 0
+    },
+    {
+        "name": "Blinding Smite",
+        "level": 3,
+        "damage_type": "Radiant",
+        "damage_die": "8",
+        "die_count": "3",
+        "additional_damage": 0
+    },
+    {
+        "name": "Life Transference",
+        "level": 3,
+        "damage_type": "Necrotic",
+        "damage_die": "8",
+        "die_count": "4",
+        "additional_damage": 0
+    },
+    {
+        "name": "Melf's Minute Meteors",
+        "level": 3,
+        "damage_type": "Fire",
+        "damage_die": "6",
+        "die_count": "2",
+        "additional_damage": 0
+    },
+    {
+        "name": "Psionic Blast",
+        "level": 3,
+        "damage_type": "Force",
+        "damage_die": "8",
+        "die_count": "5",
+        "additional_damage": 0
+    },
+    {
+        "name": "Vampiric Touch",
+        "level": 3,
+        "damage_type": "Necrotic",
+        "damage_die": "6",
+        "die_count": "3",
+        "additional_damage": 0
+    },
+    {
+        "name": "Blight",
+        "level": 4,
+        "damage_type": "Necrotic",
+        "damage_die": "8",
+        "die_count": "8",
+        "additional_damage": 0
+    },
+    {
+        "name": "Elemental Weapon",
+        "level": 4,
+        "damage_type": "Choice",
+        "damage_die": "1d4",
+        "additional_damage": 0
+    },
+    {
+        "name": "Phantasmal Killer",
+        "level": 4,
+        "damage_type": "Psychic",
+        "damage_die": "10",
+        "die_count": "4",
+        "additional_damage": 0
+    },
+    {
+        "name": "Shadow of Moil",
+        "level": 4,
+        "damage_type": "Necrotic",
+        "damage_die": "8",
+        "die_count": "2",
+        "additional_damage": 0
+    },
+    {
+        "name": "Staggering Smite",
+        "level": 4,
+        "damage_type": "Psychic",
+        "damage_die": "6",
+        "die_count": "4",
+        "additional_damage": 0
+    },
+    {
+        "name": "Banishing Smite",
+        "level": 5,
+        "damage_type": "Force",
+        "damage_die": "10",
+        "die_count": "5",
+        "additional_damage": 0
+    },
+    {
+        "name": "Bigby's Hand",
+        "level": 5,
+        "damage_type": "Force",
+        "damage_die": "8",
+        "die_count": "4",
+        "additional_damage": 0
+    },
+    {
+        "name": "Enervation",
+        "level": 5,
+        "damage_type": "Necrotic",
+        "damage_die": "8",
+        "die_count": "4",
+        "additional_damage": 0
+    },
+    {
+        "name": "Disintegrate",
+        "level": 6,
+        "damage_type": "Force",
+        "damage_die": "6",
+        "die_count": "10",
+        "additional_damage": 40
+    },
+    {
+        "name": "Harm",
+        "level": 6,
+        "damage_type": "Necrotic",
+        "damage_die": "6",
+        "die_count": "14",
+        "additional_damage": 0
+    },
+    {
+        "name": "Mental Prison",
+        "level": 6,
+        "damage_type": "Psychic",
+        "damage_die": "10",
+        "die_count": "5",
+        "additional_damage": 0
+    },
+    {
+        "name": "Finger of Death",
+        "level": 7,
+        "damage_type": "Necrotic",
+        "damage_die": "8",
+        "die_count": "7",
+        "additional_damage": 30
+    },
+    {
+        "name": "Abi-Dalzim's Horrid Wilting",
+        "level": 8,
+        "damage_type": "Necrotic",
+        "damage_die": "8",
+        "die_count": "12",
+        "additional_damage": 0
+    },
+    {
+        "name": "Power Word Kill",
+        "level": 9,
+        "damage_type": "N/A",
+        "damage_die": "Instant",
+        "additional_damage": 0
+    },
+    {
+        "name": "Psychic Scream",
+        "level": 9,
+        "damage_type": "Psychic",
+        "damage_die": "6",
+        "die_count": "14",
+        "additional_damage": 0
+    }
+]

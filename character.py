@@ -1,6 +1,7 @@
 import math
 import random
 
+from spell import Spell
 from weapon import Weapon
 
 class Character:
@@ -23,9 +24,8 @@ class Character:
     FUZZ = True
 
     # Defines how often a spell will be cast when the caster has the option between a physical weapon and a spell
-    spellcaster_spell_attack = 0.9
 
-    def __init__(self, data):
+    def __init__(self, data, spells):
         self.name = data.get("name", "Unknown Hero")
         self.char_class = data.get("char_class", "Fighter")
         self.level = data.get("level", 1)
@@ -79,8 +79,10 @@ class Character:
         ]
 
         self.spell_slots = data.get("spell_slots", []) # Access via self.spell_slots["1st"]["max"]
-        self.spellcasting_ability = data.get("spellcasting_ability","Wisdom") 
-        self.spell_list = data.get("spell_list", [])
+        self.spellcasting_ability = data.get("spellcasting_ability","Wisdom")
+        self.spell_list_names = data.get("spell_list", [])
+        self.spell_list = [spells[name] for name in self.spell_list_names if name in spells]
+        self.spellcaster_spell_attack = data.get("spellcaster_spell_attack", 0)
 
     def _score_attack(self, state):
         score = 0
@@ -137,11 +139,6 @@ class Character:
         # Returns a random action, but higher scores have a much higher chance
         return random.choices(actions, weights=weights, k=1)[0]
 
-    def take_turn(self, encounter_state):
-        chosen_name = self.decide_action(encounter_state)
-        # print(f"{self.name} decides to: {chosen_name}")
-        self.perform_action(chosen_name, target=encounter_state.get('primary_enemy'))
-
     def perform_action(self, action_name, target=None):
         if action_name == "Attack" and target:
             return self.execute_attack(target)
@@ -193,12 +190,24 @@ class Character:
         spell_mod = self.get_modifier(self.spellcasting_ability)
         base_roll, total_to_hit = self.roll_d20(spell_mod + self.proficiency_bonus)
         
+        # Critical Check
+        crit_mod = 1
+        if base_roll == 20:
+            crit_mod = 2
+        
         if total_to_hit >= target.ac:
             # Example: Scale damage by slot level (Level 1 = 2d6, Level 2 = 3d6, etc.)
             slot_int = int(best_slot[0])
-            
-            #TODO Replace the next three lines of damage logic later
-            damage = sum(random.randint(1, 6) for _ in range(slot_int + 1))
+
+            # Filter spells to find one matching the slot level
+            # We use next() to grab the first spell that matches the level
+            matching_spells = [s for s in self.spell_list if s.level == slot_int]
+
+            if not matching_spells:
+                # Fallback if no spell of that level exists in your data
+                return f"{self.name} tried to cast a {best_slot} level spell, but knows no spells of that level!"
+
+            damage = matching_spells[0].calculate_single_target_damage(spell_mod, crit_mod)
             target.take_damage(damage)
             return f"{self.name} casts a {best_slot} level spell! HITS {target.name} for {damage} damage."
         

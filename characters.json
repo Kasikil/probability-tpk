@@ -49,7 +49,8 @@
             }
         },
         "spellcasting_ability": "Wisdom",
-        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"]
+        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
+        "spellcaster_spell_attack": 0.9
     },
 {
         "name": "Bobblin",
@@ -91,7 +92,8 @@
             }
         },
         "spellcasting_ability": "Wisdom",
-        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"]
+        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
+        "spellcaster_spell_attack": 0.1
     },
     {
         "name": "Roblin",
@@ -133,7 +135,8 @@
             }
         },
         "spellcasting_ability": "Wisdom",
-        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"]
+        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
+        "spellcaster_spell_attack": 0.1
     },
     {
         "name": "Goblin",
@@ -175,6 +178,7 @@
             }
         },
         "spellcasting_ability": "Wisdom",
-        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"]
+        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
+        "spellcaster_spell_attack": 0.2
     }
 ]

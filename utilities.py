@@ -3,8 +3,9 @@ import random
 import time
 
 from character import Character
+from spell import Spell
 
-def load_characters(filename):
+def load_characters(filename, spells):
     """Loads a list of characters from a single JSON file."""
     party_members = []
     
@@ -14,7 +15,7 @@ def load_characters(filename):
             
             for char_data in data_list:
                 # Create a character instance using the dictionary
-                new_char = Character(char_data)
+                new_char = Character(char_data, spells)
                 party_members.append(new_char)
                 
         return party_members
@@ -25,6 +26,23 @@ def load_characters(filename):
     except json.JSONDecodeError:
         print(f"Error: {filename} is not formatted correctly.")
         return []
+    
+def load_spells(filename):
+    """Loads a list of spells from a single JSON file."""
+    try:
+        with open(filename, 'r') as f:
+            data_list = json.load(f)
+            
+            # Create a dictionary where the KEY is the name 
+            # and the VALUE is the instantiated Spell object
+            return {d["name"]: Spell(d) for d in data_list}
+            
+    except FileNotFoundError:
+        print(f"Error: {filename} not found.")
+        return {} # Return empty dict instead of list for consistency
+    except json.JSONDecodeError:
+        print(f"Error: {filename} is not formatted correctly.")
+        return {}
     
 _start_time = None
 
