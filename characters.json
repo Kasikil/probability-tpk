@@ -50,7 +50,18 @@
         },
         "spellcasting_ability": "Wisdom",
         "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
-        "spellcaster_spell_attack": 0.9
+        "spellcaster_spell_attack": 0.9,
+        "action_preference_weights": {
+            "Attack": 1,
+            "Heal": 2,
+            "Buff": 3,
+            "Nerf": 4
+        },
+        "target_choice_weights": {
+            "Lowest_HP": 1,
+            "Highest_HP": 2,
+            "Stay_On_Target": 3
+        } 
     },
 {
         "name": "Bobblin",
@@ -93,7 +104,13 @@
         },
         "spellcasting_ability": "Wisdom",
         "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
-        "spellcaster_spell_attack": 0.1
+        "spellcaster_spell_attack": 0.1,
+        "action_preference_weights": {
+            "Attack": 1,
+            "Heal": 2,
+            "Buff": 3,
+            "Nerf": 4
+        }
     },
     {
         "name": "Roblin",
@@ -136,7 +153,13 @@
         },
         "spellcasting_ability": "Wisdom",
         "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
-        "spellcaster_spell_attack": 0.1
+        "spellcaster_spell_attack": 0.1,
+        "action_preference_weights": {
+            "Attack": 1,
+            "Heal": 2,
+            "Buff": 3,
+            "Nerf": 4
+        }
     },
     {
         "name": "Goblin",
@@ -179,6 +202,12 @@
         },
         "spellcasting_ability": "Wisdom",
         "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
-        "spellcaster_spell_attack": 0.2
+        "spellcaster_spell_attack": 0.2,
+        "action_preference_weights": {
+            "Attack": 1,
+            "Heal": 2,
+            "Buff": 3,
+            "Nerf": 4
+        }
     }
 ]
