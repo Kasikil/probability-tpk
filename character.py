@@ -71,14 +71,13 @@ class Character:
 
         self.roll_initiative()
 
-        self.action_preference_weights = data.get("action_preference_weights", {}) #TODO: Implementation
         self.target_choice_weights = data.get("target_choice_weights", {}) #TODO: Implementation
 
         self.possible_actions = [
-            {"name": "Attack", "base_weight": 10, "logic": self._score_attack},
-            {"name": "Heal", "base_weight": 0, "logic": self._score_heal},
-            {"name": "Buff", "base_weight": -50, "logic": self._score_buff}, #TODO: update inital weight
-            {"name": "Nerf", "base_weight": -50, "logic": self._score_nerf} #TODO: update initial weight
+            {"name": "Attack", "base_weight": data.get("action_preference_weights", {}).get("Attack", 10), "logic": self._score_attack},
+            {"name": "Heal", "base_weight": data.get("action_preference_weights", {}).get("Heal", 0), "logic": self._score_heal},
+            {"name": "Buff", "base_weight": data.get("action_preference_weights", {}).get("Buff", -50), "logic": self._score_buff}, #TODO: update inital weight
+            {"name": "Nerf", "base_weight": data.get("action_preference_weights", {}).get("Nerf", -50), "logic": self._score_nerf} #TODO: update initial weight
         ]
 
         self.spell_slots = data.get("spell_slots", []) # Access via self.spell_slots["1st"]["max"]
