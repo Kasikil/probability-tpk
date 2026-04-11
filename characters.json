@@ -110,7 +110,12 @@
             "Heal": 2,
             "Buff": 3,
             "Nerf": 4
-        }
+        },
+        "target_choice_weights": {
+            "Lowest_HP": 1,
+            "Highest_HP": 2,
+            "Stay_On_Target": 3
+        } 
     },
     {
         "name": "Roblin",
@@ -159,7 +164,12 @@
             "Heal": 2,
             "Buff": 3,
             "Nerf": 4
-        }
+        },
+        "target_choice_weights": {
+            "Lowest_HP": 1,
+            "Highest_HP": 2,
+            "Stay_On_Target": 3
+        } 
     },
     {
         "name": "Goblin",
@@ -208,6 +218,11 @@
             "Heal": 2,
             "Buff": 3,
             "Nerf": 4
-        }
+        },
+        "target_choice_weights": {
+            "Lowest_HP": 1,
+            "Highest_HP": 2,
+            "Stay_On_Target": 3
+        } 
     }
 ]

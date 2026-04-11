@@ -5,20 +5,14 @@ import time
 from character import Character
 from spell import Spell
 
-def load_characters(filename, spells):
+def load_character_json(filename):
     """Loads a list of characters from a single JSON file."""
-    party_members = []
-    
+
     try:
         with open(filename, 'r') as f:
             data_list = json.load(f)  # This is now a list, not a dict
-            
-            for char_data in data_list:
-                # Create a character instance using the dictionary
-                new_char = Character(char_data, spells)
-                party_members.append(new_char)
-                
-        return party_members
+
+        return data_list
     
     except FileNotFoundError:
         print(f"Error: {filename} not found.")
@@ -26,6 +20,17 @@ def load_characters(filename, spells):
     except json.JSONDecodeError:
         print(f"Error: {filename} is not formatted correctly.")
         return []
+
+def load_characters(data_list, spells):
+    """Loads a list of characters from a single JSON file."""
+    party_members = []
+        
+    for char_data in data_list:
+        # Create a character instance using the dictionary
+        new_char = Character(char_data, spells)
+        party_members.append(new_char)
+            
+    return party_members
     
 def load_spells(filename):
     """Loads a list of spells from a single JSON file."""
