@@ -40,6 +40,8 @@ class Character:
         self.is_dead = False
         self.death_successes = 0
         self.death_failures = 0
+        self.has_advantage = False
+        self.has_disadvantage = False
         
         # Ability Scores (default to 10 if missing)
         self.scores = data.get("scores", {
@@ -250,7 +252,12 @@ class Character:
 
     def roll_d20(self, modifier=0):
         """Simulates a d20 roll with a modifier."""
-        roll = random.randint(1, 20)
+        if self.has_advantage and not self.has_disadvantage:
+            roll = max(random.randint(1, 20), random.randint(1, 20))
+        elif self.has_disadvantage and not self.has_advantage:
+            roll = min(random.randint(1, 20), random.randint(1, 20))
+        else:
+            roll = random.randint(1, 20)
         return roll, roll + modifier
     
     def take_damage(self, amount):
@@ -320,3 +327,13 @@ class Character:
         natural, total = self.roll_d20(modifier)
         #print(f"{self.name} rolls {skill_name} ({base_ability}): {natural} + {modifier} = {total}")
         return total
+    
+    def set_advantage(self, has_advantage=False, has_disadvantage=False):
+        """Sets advantage/disadvantage status. Both True results in a cancel-out (False)."""
+        if has_advantage and has_disadvantage:
+            # Rules-as-written: they cancel each other out entirely
+            self.has_advantage = False
+            self.has_disadvantage = False
+        else:
+            self.has_advantage = has_advantage
+            self.has_disadvantage = has_disadvantage
