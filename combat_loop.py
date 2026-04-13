@@ -11,6 +11,8 @@ def combat_loop(characters_data, spells):
     characters = []
     enemies = []
     heroes = []
+    unconcious_heroes = []
+    unconcious_enemies = []
     state = {
         "round": 0,
         "enemies_present": 0,
@@ -40,6 +42,8 @@ def combat_loop(characters_data, spells):
             # 1. Update State
             enemies = [c for c in characters if c.hero_status == 0 and c.current_hp > 0]
             heroes = [c for c in characters if c.hero_status == 1 and c.current_hp > 0]
+            unconcious_heroes = [c for c in characters if c.hero_status == 1 and c.current_hp <= 0 and not c.is_dead]
+            unconcious_enemies = [c for c in characters if c.hero_status == 0 and c.current_hp <= 0 and not c.is_dead]
 
             # Check Win/Loss Conditions
             if not enemies or not heroes:
@@ -47,8 +51,14 @@ def combat_loop(characters_data, spells):
 
             state["enemies_present"] = len(enemies)
             state["heroes_present"] = len(heroes)
-            state["target_hp_low"] = any(e.current_hp / e.hp_max < 0.3 for e in enemies)
-            state["primary_enemy"] = enemies[0] if enemies else None
+            if char.hero_status == 1:
+                state["target_hp_low"] = any(e.current_hp / e.hp_max < 0.3 for e in enemies)
+                state["primary_enemy"] = enemies[0] if enemies else None
+            if char.hero_status == 0:
+                state["target_hp_low"] = any(h.current_hp / h.hp_max < 0.3 for h in heroes)
+                state["primary_enemy"] = heroes[0] if heroes else None
+            state["unconcious_heroes"] = len(unconcious_heroes)
+            state["unconcious_enemies"] = len(unconcious_enemies)
 
             # 2. Decide and Act
             action = char.decide_action(state)

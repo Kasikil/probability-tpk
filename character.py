@@ -90,7 +90,9 @@ class Character:
 
     def _score_attack(self, state):
         score = 0
-        if state['enemies_present'] > 0:
+        if (state['enemies_present'] > 0 or state['unconcious_enemies'] > 0) and self.hero_status == 1 :
+            score += 15
+        if (state['heroes_present'] > 0 or state['unconcious_heroes'] > 0) and self.hero_status == 0:
             score += 15
         if state['target_hp_low']:
             score += 10 # Prioritize finishing off enemies
