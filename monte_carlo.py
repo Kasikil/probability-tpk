@@ -10,7 +10,7 @@ n = 10000
 tic()
 spells = load_spells("all_spells.json")
 test_party = load_character_json("characters.json")
-for ac_bonus in range(-14, 0):
+for ac_bonus in range(-14, 5):
     run_party = copy.deepcopy(test_party)
     run_party[0]['ac'] += ac_bonus
     results = [combat_loop(run_party, spells) for _ in range(n)]

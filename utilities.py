@@ -69,7 +69,7 @@ def select_target(all_characters, acting_character, action_type="Attack"):
 
     if action_type == "Attack":
         # Heroes attack Enemies (status 0), Enemies attack Heroes (status 1)
-        targets = [c for c in living if c.hero_status != acting_character.hero_status]
+        targets = [c for c in all_characters if c.hero_status != acting_character.hero_status]
         return random.choice(targets) if targets else None
 
     if action_type == "Heal":

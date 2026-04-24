@@ -1,7 +1,7 @@
 import random
 
 class Weapon:
-    def __init__(self, name, damage_die, die_count=1, ability="Strength", magic_bonus=0, extra_damage=None):
+    def __init__(self, name, damage_die, die_count=1, ability="Strength", magic_bonus=0, extra_damage=None, weapon_type="Melee"):
         """
         :param damage_die: The size of the die (e.g., 6 for d6).
         :param die_count: Number of dice (e.g., 2 for 2d6 Greatsword).
@@ -16,6 +16,7 @@ class Weapon:
         self.ability = ability
         self.magic_bonus = magic_bonus
         self.extra_damage = extra_damage if extra_damage else {}
+        self.type = weapon_type
 
     def roll_damage(self, modifier, critical_mod=1):
         """Calculates total damage: (XdY + mod + magic) + (Elemental dice)."""

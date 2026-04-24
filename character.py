@@ -60,7 +60,8 @@ class Character:
                 die_count=weapon_data["die_count"],
                 ability=weapon_data.get("ability", "Strength"),
                 magic_bonus=weapon_data.get("magic_bonus", 0),
-                extra_damage=weapon_data.get("extra_damage",None)
+                extra_damage=weapon_data.get("extra_damage",None),
+                weapon_type=weapon_data.get("weapon_type","Melee")
             )
         else:
             self.equipped_weapon = None
@@ -168,6 +169,13 @@ class Character:
             return f"{self.name} has no weapon!"
 
         # Roll to hit: d20 + Ability Mod + Proficiency
+        if not target.is_conscious and target.current_hp == 0:
+            if self.equipped_weapon.type == "Melee":
+                death_save_fails = 2
+            else:
+                death_save_fails = 1
+            target.take_damage(0, death_save_fails=death_save_fails)
+            return f"{self.name} auto-CRITS {target.name} for {death_save_fails} failed death saves!"
         mod = self.get_modifier(self.equipped_weapon.ability)
         base_roll, total_to_hit = self.roll_d20(mod + self.proficiency_bonus + self.equipped_weapon.magic_bonus)
 
@@ -262,7 +270,7 @@ class Character:
             roll = random.randint(1, 20)
         return roll, roll + modifier
     
-    def take_damage(self, amount):
+    def take_damage(self, amount, death_save_fails=0):
         """Reduces current HP and checks for unconsciousness/death."""
         if amount < 0:
             # print("Damage cannot be negative. Use a healing method instead.")
@@ -284,7 +292,12 @@ class Character:
             # print(f"{self.name} has fallen unconscious (0 HP)!")
         else:
             return
-            # print(f"{self.name} took {amount} damage. Current HP: {self.current_hp}/{self.hp_max}")
+        
+        if death_save_fails > 0:
+            self.death_failures += death_save_fails
+            if self.death_failures >= self.allowed_death_saves:
+                self.is_dead = True
+                # print(f"{self.name} has died due to failed death saves.")
 
     def heal(self):
         """Restores HP without exceeding the maximum."""

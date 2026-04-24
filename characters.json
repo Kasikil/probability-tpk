@@ -21,7 +21,8 @@
             "die_count": 1,
             "ability": "Strength",
             "magic_bonus": 1,
-            "extra_damage": {"6": "Frost"}
+            "extra_damage": {"6": "Frost"}, 
+            "weapon_type": "Melee"
         },
         "health_potions": {
             "potion_of_healing": 1,
@@ -76,7 +77,9 @@
             "name": "Scimitar", 
             "damage_die": 6, 
             "die_count": 1,
-            "ability": "Dexterity" },
+            "ability": "Dexterity",
+            "weapon_type": "Melee"
+        },
         "health_potions": {
             "potion_of_healing": 1,
             "greater_potion_of_healing": 0,
@@ -130,7 +133,8 @@
             "name": "Scimitar", 
             "damage_die": 6, 
             "die_count": 1,
-            "ability": "Dexterity" },
+            "ability": "Dexterity",
+            "weapon_type": "Melee"},
         "health_potions": {
             "potion_of_healing": 1,
             "greater_potion_of_healing": 0,
@@ -184,7 +188,9 @@
             "name": "Scimitar", 
             "damage_die": 6, 
             "die_count": 1,
-            "ability": "Dexterity" },
+            "ability": "Dexterity",
+            "weapon_type": "Melee"
+        },
         "health_potions": {
             "potion_of_healing": 1,
             "greater_potion_of_healing": 0,
