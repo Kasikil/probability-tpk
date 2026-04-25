@@ -51,6 +51,8 @@ def combat_loop(characters_data, spells):
 
             state["enemies_present"] = len(enemies)
             state["heroes_present"] = len(heroes)
+            state["enemies"] = enemies
+            state["heroes"] = heroes
             if char.hero_status == 1:
                 state["target_hp_low"] = any(e.current_hp / e.hp_max < 0.3 for e in enemies)
                 state["primary_enemy"] = enemies[0] if enemies else None

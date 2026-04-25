@@ -10,6 +10,9 @@ class Spell:
         self.damage_die = data.get("damage_die", 6)
         self.die_count = data.get("die_count", 1)
         self.additional_damage = data.get("additional_damage", 0)
+        self.spell_type = data.get("spell_type", "Damage")
+        self.heal_die = data.get("heal_die", 8)
+        self.heal_die_count = data.get("heal_die_count", 1)
 
     def calculate_single_target_damage(self, modifier, critical_mod=1):
         """
@@ -23,3 +26,16 @@ class Spell:
         total_damage = base_roll*critical_mod + modifier + self.additional_damage
 
         return total_damage
+    
+    def calculate_healing(self, modifier, critical_mod=1):
+        """
+        Simulates a healing spell roll by rolling 'heal_die_count' dice of size 'heal_die'
+        and adding 'modifier' accounting for criticals if needed
+        """
+        # 1. Base Healing (e.g., 2d8)
+        base_heal = sum(random.randint(1, int(self.heal_die)) for _ in range(int(self.heal_die_count)))
+        
+        # 2. Add Modifier and Magic Bonus
+        total_heal = base_heal*critical_mod + modifier
+
+        return total_heal

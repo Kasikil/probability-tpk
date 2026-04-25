@@ -4,84 +4,96 @@
         "level": 0,
         "damage_type": "Thunder",
         "damage_die": "1d8",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Chill Touch",
         "level": 0,
         "damage_type": "Necrotic",
         "damage_die": "1d8",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Eldritch Blast",
         "level": 0,
         "damage_type": "Force",
         "damage_die": "1d10",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Fire Bolt",
         "level": 0,
         "damage_type": "Fire",
         "damage_die": "1d10",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Mind Sliver",
         "level": 0,
         "damage_type": "Psychic",
         "damage_die": "1d6",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Poison Spray",
         "level": 0,
         "damage_type": "Poison",
         "damage_die": "1d12",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Primal Savagery",
         "level": 0,
         "damage_type": "Acid",
         "damage_die": "1d10",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Ray of Frost",
         "level": 0,
         "damage_type": "Cold",
         "damage_die": "1d8",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Sapping Sting",
         "level": 0,
         "damage_type": "Necrotic",
         "damage_die": "1d4",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Shocking Grasp",
         "level": 0,
         "damage_type": "Lightning",
         "damage_die": "1d8",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Toll the Dead",
         "level": 0,
         "damage_type": "Necrotic",
         "damage_die": "1d12",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Vicious Mockery",
         "level": 0,
         "damage_type": "Psychic",
         "damage_die": "1d4",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Catapult",
@@ -89,7 +101,8 @@
         "damage_type": "Bludgeoning",
         "damage_die": "8",
         "die_count": "3",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Chaos Bolt",
@@ -97,7 +110,8 @@
         "damage_type": "Varies",
         "damage_die": "8",
         "die_count": "2",
-        "additional_damage": 6
+        "additional_damage": 6,
+        "spell_type": "Damage"
     },
     {
         "name": "Chromatic Orb",
@@ -105,7 +119,8 @@
         "damage_type": "Choice",
         "damage_die": "8",
         "die_count": "3",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Guiding Bolt",
@@ -113,7 +128,8 @@
         "damage_type": "Radiant",
         "damage_die": "6",
         "die_count": "4",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Inflict Wounds",
@@ -121,7 +137,8 @@
         "damage_type": "Necrotic",
         "damage_die": "10",
         "die_count": "3",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Magic Missile",
@@ -129,7 +146,8 @@
         "damage_type": "Force",
         "damage_die": "4",
         "die_count": "3",
-        "additional_damage": 3
+        "additional_damage": 3,
+        "spell_type": "Damage"
     },
     {
         "name": "Ray of Sickness",
@@ -137,14 +155,16 @@
         "damage_type": "Poison",
         "damage_die": "8",
         "die_count": "2",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Witch Bolt",
         "level": 1,
         "damage_type": "Lightning",
         "damage_die": "1d12",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Cloud of Daggers",
@@ -152,14 +172,16 @@
         "damage_type": "Slashing",
         "damage_die": "4",
         "die_count": "4",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Crown of Madness",
         "level": 2,
         "damage_type": "Psychic",
         "damage_die": "1d6",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Mind Spike",
@@ -167,7 +189,8 @@
         "damage_type": "Psychic",
         "damage_die": "8",
         "die_count": "3",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Scorching Ray",
@@ -175,7 +198,8 @@
         "damage_type": "Fire",
         "damage_die": "6",
         "die_count": "6",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Shadow Blade",
@@ -183,21 +207,24 @@
         "damage_type": "Psychic",
         "damage_die": "8",
         "die_count": "2",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Spiritual Weapon",
         "level": 2,
         "damage_type": "Force",
         "damage_die": "1d8",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Bestow Curse",
         "level": 3,
         "damage_type": "Necrotic",
         "damage_die": "1d8",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Blinding Smite",
@@ -205,7 +232,8 @@
         "damage_type": "Radiant",
         "damage_die": "8",
         "die_count": "3",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Life Transference",
@@ -213,7 +241,8 @@
         "damage_type": "Necrotic",
         "damage_die": "8",
         "die_count": "4",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Melf's Minute Meteors",
@@ -221,7 +250,8 @@
         "damage_type": "Fire",
         "damage_die": "6",
         "die_count": "2",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Psionic Blast",
@@ -229,7 +259,8 @@
         "damage_type": "Force",
         "damage_die": "8",
         "die_count": "5",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Vampiric Touch",
@@ -237,7 +268,8 @@
         "damage_type": "Necrotic",
         "damage_die": "6",
         "die_count": "3",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Blight",
@@ -245,14 +277,16 @@
         "damage_type": "Necrotic",
         "damage_die": "8",
         "die_count": "8",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Elemental Weapon",
         "level": 4,
         "damage_type": "Choice",
         "damage_die": "1d4",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Phantasmal Killer",
@@ -260,7 +294,8 @@
         "damage_type": "Psychic",
         "damage_die": "10",
         "die_count": "4",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Shadow of Moil",
@@ -268,7 +303,8 @@
         "damage_type": "Necrotic",
         "damage_die": "8",
         "die_count": "2",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Staggering Smite",
@@ -276,7 +312,8 @@
         "damage_type": "Psychic",
         "damage_die": "6",
         "die_count": "4",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Banishing Smite",
@@ -284,7 +321,8 @@
         "damage_type": "Force",
         "damage_die": "10",
         "die_count": "5",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Bigby's Hand",
@@ -292,7 +330,8 @@
         "damage_type": "Force",
         "damage_die": "8",
         "die_count": "4",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Enervation",
@@ -300,7 +339,8 @@
         "damage_type": "Necrotic",
         "damage_die": "8",
         "die_count": "4",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Disintegrate",
@@ -308,7 +348,8 @@
         "damage_type": "Force",
         "damage_die": "6",
         "die_count": "10",
-        "additional_damage": 40
+        "additional_damage": 40,
+        "spell_type": "Damage"
     },
     {
         "name": "Harm",
@@ -316,7 +357,8 @@
         "damage_type": "Necrotic",
         "damage_die": "6",
         "die_count": "14",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Mental Prison",
@@ -324,7 +366,8 @@
         "damage_type": "Psychic",
         "damage_die": "10",
         "die_count": "5",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Finger of Death",
@@ -332,7 +375,8 @@
         "damage_type": "Necrotic",
         "damage_die": "8",
         "die_count": "7",
-        "additional_damage": 30
+        "additional_damage": 30,
+        "spell_type": "Damage"
     },
     {
         "name": "Abi-Dalzim's Horrid Wilting",
@@ -340,14 +384,16 @@
         "damage_type": "Necrotic",
         "damage_die": "8",
         "die_count": "12",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Power Word Kill",
         "level": 9,
         "damage_type": "N/A",
         "damage_die": "Instant",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
     },
     {
         "name": "Psychic Scream",
@@ -355,6 +401,18 @@
         "damage_type": "Psychic",
         "damage_die": "6",
         "die_count": "14",
-        "additional_damage": 0
+        "additional_damage": 0,
+        "spell_type": "Damage"
+    },
+    {
+        "name": "Cure Wounds",
+        "level": 1,
+        "damage_type": "Heal",
+        "damage_die": "0",
+        "die_count": "0",
+        "additional_damage": 0,
+        "spell_type": "Heal",
+        "heal_die": "8",
+        "heal_die_count": "1"
     }
 ]

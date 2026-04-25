@@ -78,7 +78,8 @@ class Character:
 
         self.possible_actions = [
             {"name": "Attack", "base_weight": data.get("action_preference_weights", {}).get("Attack", 10), "logic": self._score_attack},
-            {"name": "Heal", "base_weight": data.get("action_preference_weights", {}).get("Heal", 0), "logic": self._score_heal},
+            {"name": "Heal Self", "base_weight": data.get("action_preference_weights", {}).get("Heal Self", 0), "logic": self._score_heal},
+            {"name": "Heal Others", "base_weight": data.get("action_preference_weights", {}).get("Heal Others", 0), "logic": self._score_heal_others},
             {"name": "Buff", "base_weight": data.get("action_preference_weights", {}).get("Buff", -50), "logic": self._score_buff}, #TODO: update inital weight
             {"name": "Nerf", "base_weight": data.get("action_preference_weights", {}).get("Nerf", -50), "logic": self._score_nerf} #TODO: update initial weight
         ]
@@ -102,12 +103,44 @@ class Character:
     def _score_heal(self, state):
         # Highly weighted only if the character is hurt
         hp_percent = self.current_hp / self.hp_max
-        potion_count = self.health_potions["supreme_potion_of_healing"] + self.health_potions["superior_potion_of_healing"] + self.health_potions["greater_potion_of_healing"] + self.health_potions["potion_of_healing"]
-        if hp_percent < 0.3 and potion_count > 0:
-            return 40  # Emergency healing
-        if hp_percent < 0.7  and potion_count > 0:
-            return 10  # Moderate need
+        potion_count = self.current_potion_count()
+        heal_spell_count = self.current_castable_spell_count(spell_type='Heal')
+        if hp_percent < 0.3 and (potion_count > 0 or heal_spell_count > 0):
+            return 60  # Emergency healing
+        if hp_percent < 0.7  and (potion_count > 0 or heal_spell_count > 0):
+            return 20  # Moderate need
         return -50     # Don't heal if healthy
+    
+    def _score_heal_others(self, state):
+        # Weighted if allies are hurt, but less than self-heal
+        potion_count = self.current_potion_count()
+        if potion_count == 0 and self.current_castable_spell_count(spell_type='Heal') == 0:
+            return -50 # Can't heal others if you have no potions or healing spells
+
+        if self.hero_status == 1 and state['heroes_present'] > 0:
+            avg_ally_hp_percent = sum(hp.current_hp / hp.hp_max for hp in state['heroes']) / state['heroes_present']
+            if avg_ally_hp_percent < 0.5:
+                return 20  # Allies are in trouble
+            
+        elif self.hero_status == 0 and state['enemies_present'] > 0:
+            avg_ally_hp_percent = sum(hp.current_hp / hp.hp_max for hp in state['enemies']) / state['enemies_present']
+            if avg_ally_hp_percent < 0.5:
+                return 20  # Allies are in trouble
+        
+        if self.hero_status == 1 and state['heroes_present'] > 0:
+            for hp in state['heroes']:
+                if hp.current_hp / hp.hp_max < 0.3 and hp != self and hp.is_dead == False and hp.is_conscious == True:
+                    return 30 # Prioritize critically hurt allies
+                elif hp.current_hp == 0 and not hp.is_conscious and not hp.is_dead:
+                    return 50 # Prioritize unconcious allies for healing to stabilize them
+        elif self.hero_status == 0 and state['enemies_present'] > 0:
+            for hp in state['enemies']:
+                if hp.current_hp / hp.hp_max < 0.3 and hp != self and hp.is_dead == False and hp.is_conscious == True:
+                    return 30 # Prioritize critically hurt allies
+                elif hp.current_hp == 0 and not hp.is_conscious and not hp.is_dead:
+                    return 50 # Prioritize unconcious allies for healing to stabilize them
+
+        return -50  # Don't prioritize healing others if they are relatively healthy
     
     def _score_buff(self, state):
         return -50
@@ -149,8 +182,10 @@ class Character:
     def perform_action(self, action_name, target=None):
         if action_name == "Attack" and target:
             return self.execute_attack(target)
-        elif action_name == "Heal":
-            self.heal()
+        elif action_name == "Heal Self":
+            self.heal(self)
+        elif action_name == "Heal Others" and target:
+            return self.heal(target)
         elif action_name == "Buff":
             self.buff()
         elif action_name == "Nerf":
@@ -227,6 +262,22 @@ class Character:
         
         return f"{self.name} fires a spell at {target.name} but MISSES."
 
+    def heal(self, target):
+        healing_hp = 0
+
+        # Always heal with spells before potions if available
+        if self.current_castable_spell_count('Heal') == 0:
+            if self.current_potion_count() == 0:
+                return f"{self.name} has no healing spells or potions left to heal {target.name}!"
+            else:
+                healing_hp = self.drink_potion()
+        else:
+            healing_hp = self.cast_healing()
+
+        target.recieve_healing(healing_hp)
+        return f"{self.name} heals {target.name} for {healing_hp} HP!"
+
+
     def calculate_initial_hp(self):
         # (Using the logic from our previous steps)
         hit_die = self.CLASS_HIT_DIE.get(self.char_class, 8)
@@ -290,36 +341,23 @@ class Character:
                 #print(f"--- {self.name} has fallen unconscious! ---")
                 self.is_conscious = False
             # print(f"{self.name} has fallen unconscious (0 HP)!")
-        else:
-            return
         
-        if death_save_fails > 0:
+        if death_save_fails >= 0:
             self.death_failures += death_save_fails
             if self.death_failures >= self.allowed_death_saves:
                 self.is_dead = True
                 # print(f"{self.name} has died due to failed death saves.")
 
-    def heal(self):
-        """Restores HP without exceeding the maximum."""
-        amount = 0
-
-        if self.health_potions["supreme_potion_of_healing"] > 0:
-            amount = sum([random.randint(1, 4) for _ in range(10)]) + 20
-            self.health_potions["supreme_potion_of_healing"] -= 1
-        elif self.health_potions["superior_potion_of_healing"] > 0:
-            amount = sum([random.randint(1, 4) for _ in range(8)]) + 8
-            self.health_potions["superior_potion_of_healing"] -= 1
-        elif self.health_potions["greater_potion_of_healing"] > 0:
-            amount = sum([random.randint(1, 4) for _ in range(4)]) + 4
-            self.health_potions["greater_potion_of_healing"] -= 1
-        elif self.health_potions["potion_of_healing"] > 0:
-            amount = sum([random.randint(1, 4) for _ in range(2)]) + 2
-            self.health_potions["potion_of_healing"] -= 1
+    def recieve_healing(self, amount):
+        """Recieves healing from an external source (like a spell or ally's action)."""
+        if self.is_dead:
+            # print(f"{self.name} cannot be healed because they are dead.")
+            return
+        elif not self.is_conscious and self.current_hp == 0:
+            self.is_conscious = True
+            self.death_successes = 0
         
-        self.current_hp += amount
-        if self.current_hp > self.hp_max:
-            self.current_hp = self.hp_max
-        #print(f"{self.name} healed for {amount}. Current HP: {self.current_hp}/{self.hp_max}")
+        self.current_hp = min(self.hp_max, self.current_hp + amount)
 
     def buff(self):
         #TODO: Implement buff functionality with magic
@@ -352,3 +390,46 @@ class Character:
         else:
             self.has_advantage = has_advantage
             self.has_disadvantage = has_disadvantage
+    
+    def current_potion_count(self):
+        potion_count = self.health_potions["supreme_potion_of_healing"] + self.health_potions["superior_potion_of_healing"] + self.health_potions["greater_potion_of_healing"] + self.health_potions["potion_of_healing"]
+        return potion_count
+    
+    def drink_potion(self):
+        amount = 0
+
+        if self.health_potions["supreme_potion_of_healing"] > 0:
+            amount = sum([random.randint(1, 4) for _ in range(10)]) + 20
+            self.health_potions["supreme_potion_of_healing"] -= 1
+        elif self.health_potions["superior_potion_of_healing"] > 0:
+            amount = sum([random.randint(1, 4) for _ in range(8)]) + 8
+            self.health_potions["superior_potion_of_healing"] -= 1
+        elif self.health_potions["greater_potion_of_healing"] > 0:
+            amount = sum([random.randint(1, 4) for _ in range(4)]) + 4
+            self.health_potions["greater_potion_of_healing"] -= 1
+        elif self.health_potions["potion_of_healing"] > 0:
+            amount = sum([random.randint(1, 4) for _ in range(2)]) + 2
+            self.health_potions["potion_of_healing"] -= 1
+
+        return amount
+    
+    def current_castable_spell_count(self, spell_type='Damage'):
+        spells = [
+            s for s in self.spell_list 
+            if s.spell_type == spell_type and self.spell_slots.get(s.level, {}).get('current', 0) > 0]
+        return len(spells)
+    
+    def cast_healing(self):
+        healing_spells = [
+            s for s in self.spell_list 
+            if s.spell_type == "Heal" and self.spell_slots.get(s.level, {}).get('current', 0) > 0]
+        
+        healing_spells = sorted(healing_spells, key=lambda s: s.level, reverse=True) # Cast the highest level heal available
+
+        if len(healing_spells) == 0:
+            return 0
+        
+        # Use the slot
+        best_spell = healing_spells[0]  
+        self.spell_slots[best_spell.level]['current'] -= 1
+        return best_spell.calculate_healing(self.get_modifier(self.spellcasting_ability))

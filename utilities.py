@@ -72,10 +72,14 @@ def select_target(all_characters, acting_character, action_type="Attack"):
         targets = [c for c in all_characters if c.hero_status != acting_character.hero_status]
         return random.choice(targets) if targets else None
 
-    if action_type == "Heal":
+    if action_type == "Heal Others":
         # Target allies (same hero_status) who are below max HP
         allies = [c for c in living if c.hero_status == acting_character.hero_status and c.current_hp < c.hp_max]
         return random.choice(allies) if allies else acting_character
+    
+    if action_type == "Heal Self":
+        # Target self if healing self is selected - this will not be used currently and is simply completion and scaffolding for future implementation
+        return acting_character
 
     return None
 

@@ -34,7 +34,7 @@
         "legenary_actions": 0,
         "hp_max": 57,
         "current_hp": 57,
-        "allowed_death_saves": 1,
+        "allowed_death_saves": 3,
         "spell_slots": {
             "1st": {
                 "max": 4,
@@ -50,11 +50,12 @@
             }
         },
         "spellcasting_ability": "Wisdom",
-        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
+        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile", "Cure Wounds"],
         "spellcaster_spell_attack": 0.9,
         "action_preference_weights": {
             "Attack": 10,
-            "Heal": 0,
+            "Heal Self": 0,
+            "Heal Others": 0,
             "Buff": -50,
             "Nerf": -50
         },
@@ -106,11 +107,12 @@
             }
         },
         "spellcasting_ability": "Wisdom",
-        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
+        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile", "Cure Wounds"],
         "spellcaster_spell_attack": 0.1,
         "action_preference_weights": {
             "Attack": 10,
-            "Heal": 0,
+            "Heal Self": 0,
+            "Heal Others": 0,
             "Buff": -50,
             "Nerf": -50
         },
@@ -161,11 +163,12 @@
             }
         },
         "spellcasting_ability": "Wisdom",
-        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
+        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile", "Cure Wounds"],
         "spellcaster_spell_attack": 0.1,
         "action_preference_weights": {
             "Attack": 10,
-            "Heal": 0,
+            "Heal Self": 0,
+            "Heal Others": 0,
             "Buff": -50,
             "Nerf": -50
         },
@@ -217,11 +220,12 @@
             }
         },
         "spellcasting_ability": "Wisdom",
-        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile"],
+        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile", "Cure Wounds"],
         "spellcaster_spell_attack": 0.2,
         "action_preference_weights": {
             "Attack": 10,
-            "Heal": 0,
+            "Heal Self": 0,
+            "Heal Others": 0,
             "Buff": -50,
             "Nerf": -50
         },
