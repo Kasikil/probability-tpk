@@ -4,6 +4,7 @@
         "level": 0,
         "damage_type": "Acid",
         "damage_die": "6",
+        "die_count": 1,
         "additional_damage": 0,
         "spell_type": "Damage",
         "components": ["V", "S"],
@@ -52,6 +53,7 @@
         "level": 0,
         "damage_type": "Necrotic",
         "damage_die": "8",
+        "die_count": 1,
         "additional_damage": 0,
         "spell_type": "Damage",
         "components": ["V", "S"],
@@ -74,6 +76,7 @@
         "level": 0,
         "damage_type": "Fire",
         "damage_die": "8",
+        "die_count": 1,
         "additional_damage": 0,
         "spell_type": "Damage",
         "components": ["V", "S"],
@@ -98,6 +101,7 @@
         "level": 0,
         "damage_type": "Force",
         "damage_die": "10",
+        "die_count": 1,
         "additional_damage": 0,
         "spell_type": "Damage",
         "components": ["V", "S"],
@@ -121,6 +125,7 @@
         "level": 0,
         "damage_type": "Fire",
         "damage_die": "10",
+        "die_count": 1,
         "additional_damage": 0,
         "spell_type": "Damage",
         "components": ["V", "S"],
@@ -190,6 +195,38 @@
     {
         "name": "Guidance",
         "description": "Not useful in combat for this simulation."
+    },
+    {
+        "name": "Gust",
+        "level": 0,
+        "save": "STR",
+        "spell_type": "Buff",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": 30,
+        "duration": 0,
+        "move_target": 5
+    },
+    {
+        "name": "Hand of Radiance",
+        "level": 0,
+        "damage_type": "Radiant",
+        "damage_die": "6",
+        "die_count": 1,
+        "additional_damage": 0,
+        "spell_type": "Damage",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": 5,
+        "duration": 0,
+        "save": "CON",
+        "multi-attack": true,
+        "upcast_type": "character_level",
+        "upcast": {
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        }
     },
     {
         "name": "https://dnd5e.wikidot.com/spells"

@@ -39,6 +39,7 @@ class Spell:
         self.secondary_target_damage_type = data.get("secondary_target_damage_type", None) #TODO: Implement
         self.secondary_target_additional_damage = data.get("secondary_target_additional_damage", "0") #TODO: Implement
         self.description = data.get("description", "No description available.")
+        self.move_target = data.get("move_target", None) #TODO: Implement
 
     def calculate_single_target_damage(self, modifier, critical_mod=1):
         """
