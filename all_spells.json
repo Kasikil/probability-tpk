@@ -11,10 +11,6 @@
         "casting_time": "1 Action",
         "range": 60,
         "duration": 0,
-        "is_melee_spell_attack": false,
-        "requires_weapon_attack": false,
-        "hitpoint_block": "Next Turn Start",
-        "gives_disadvantage": "Undead",
         "upcast_type": "character_level",
         "upcast": {
             "5th": 2,
@@ -38,7 +34,7 @@
         "range": "Self",
         "duration": 1,
         "resistances_granted": ["Bludgeoning", "Piercing", "Slashing"],
-        "ends": "End of Your Next Turn"
+        "duration_resistances": "End of Your Next Turn"
     },
     {
         "name": "INCORRECT Booming Blade",
@@ -62,7 +58,7 @@
         "duration": 1,
         "is_melee_spell_attack": false,
         "requires_weapon_attack": false,
-        "hitpoint_block": null,
+        "hitpoint_regen_block": null,
         "gives_disadvantage": "Undead",
         "upcast_type": "character_level",
         "upcast": {
@@ -110,7 +106,7 @@
         "duration": 0,
         "is_melee_spell_attack": false,
         "requires_weapon_attack": false,
-        "hitpoint_block": null,
+        "hitpoint_regen_block": null,
         "gives_disadvantage": null,
         "upcast_type": "character_level",
         "upcast": {
@@ -134,7 +130,7 @@
         "duration": 0,
         "is_melee_spell_attack": false,
         "requires_weapon_attack": false,
-        "hitpoint_block": null,
+        "hitpoint_regen_block": null,
         "gives_disadvantage": null,
         "upcast_type": "character_level",
         "upcast": {
@@ -244,7 +240,7 @@
         "duration": 1,
         "is_melee_spell_attack": false,
         "requires_weapon_attack": false,
-        "hitpoint_block": null,
+        "hitpoint_regen_block": null,
         "gives_disadvantage": null,
         "upcast_type": "character_level",
         "upcast": {
@@ -269,7 +265,7 @@
         "duration": 0,
         "is_melee_spell_attack": false,
         "requires_weapon_attack": false,
-        "hitpoint_block": null,
+        "hitpoint_regen_block": null,
         "gives_disadvantage": null,
         "upcast_type": "character_level",
         "upcast": {
@@ -293,7 +289,7 @@
         "duration": 0,
         "is_melee_spell_attack": true,
         "requires_weapon_attack": false,
-        "hitpoint_block": null,
+        "hitpoint_regen_block": null,
         "gives_disadvantage": null,
         "upcast_type": "character_level",
         "upcast": { 
@@ -316,7 +312,7 @@
         "duration": 0,
         "is_melee_spell_attack": false,
         "requires_weapon_attack": false,
-        "hitpoint_block": null,
+        "hitpoint_regen_block": null,
         "gives_disadvantage": null,
         "upcast_type": "character_level",
         "upcast": { 
@@ -341,7 +337,7 @@
         "duration": 0,
         "is_melee_spell_attack": false,
         "requires_weapon_attack": false,
-        "hitpoint_block": null,
+        "hitpoint_regen_block": null,
         "gives_disadvantage": null,
         "upcast_type": "character_level",
         "upcast": { 
