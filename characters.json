@@ -1,5 +1,71 @@
 [
     {
+        "name": "Atticus",
+        "hero": 1,
+        "char_class": "Wizard",
+        "level": 5,
+        "race": "Human",
+        "ac": 12,
+        "scores": {
+            "Strength": 16,
+            "Dexterity": 14,
+            "Constitution": 16,
+            "Intelligence": 20,
+            "Wisdom": 20,
+            "Charisma": 20
+        },
+        "skill_proficiencies": ["Athletics", "Survival"],
+        "weapon": {
+            "name": "Short Sword",
+            "damage_die": 6,
+            "die_count": 1,
+            "ability": "Strength",
+            "magic_bonus": 1,
+            "extra_damage": {"6": "Frost"}, 
+            "weapon_type": "Melee"
+        },
+        "health_potions": {
+            "potion_of_healing": 0,
+            "greater_potion_of_healing": 0,
+            "superior_potion_of_healing": 0,
+            "supreme_potion_of_healing": 0
+        },
+        "reactions": 1,
+        "legenary_actions": 0,
+        "hp_max": 32,
+        "current_hp": 32,
+        "allowed_death_saves": 3,
+        "spell_slots": {
+            "1st": {
+                "max": 4,
+                "current": 4
+            },
+            "2nd": {
+                "max": 2,
+                "current": 2
+            },
+            "3rd": {
+                "max": 0,
+                "current": 0
+            }
+        },
+        "spellcasting_ability": "Wisdom",
+        "spell_list": ["Fire Bolt", "Shocking Grasp", "Magic Missile", "Cure Wounds"],
+        "spellcaster_spell_attack": 0.9,
+        "action_preference_weights": {
+            "Attack": 10,
+            "Heal Self": 0,
+            "Heal Others": 0,
+            "Buff": -50,
+            "Nerf": -50
+        },
+        "target_choice_weights": {
+            "Lowest_HP": 1,
+            "Highest_HP": 2,
+            "Stay_On_Target": 3
+        } 
+    },
+    {
         "name": "Tork",
         "hero": 1,
         "char_class": "Barbarian",

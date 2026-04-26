@@ -1,9 +1,49 @@
 [
     {
-        "name": "Booming Blade",
+        "name": "Acid Splash",
+        "level": 0,
+        "damage_type": "Acid",
+        "damage_die": "6",
+        "additional_damage": 0,
+        "spell_type": "Damage",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": 60,
+        "duration": 0,
+        "is_melee_spell_attack": false,
+        "requires_weapon_attack": false,
+        "hitpoint_block": "Next Turn Start",
+        "gives_disadvantage": "Undead",
+        "upcast_type": "character_level",
+        "upcast": {
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        },
+        "multi-attack": true,
+        "max_targets": 2,
+        "save": "DEX",
+        "radius": 5
+    },
+    {
+        "name": "Blade Ward",
+        "level": 0,
+        "damage_type": null,
+        "damage_die": "N/A",
+        "additional_damage": 0,
+        "spell_type": "Buff",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": "Self",
+        "duration": 1,
+        "resistances_granted": ["Bludgeoning", "Piercing", "Slashing"],
+        "ends": "End of Your Next Turn"
+    },
+    {
+        "name": "INCORRECT Booming Blade",
         "level": 0,
         "damage_type": "Thunder",
-        "damage_die": "1d8",
+        "damage_die": "8",
         "additional_damage": 0,
         "spell_type": "Damage"
     },
@@ -11,71 +51,272 @@
         "name": "Chill Touch",
         "level": 0,
         "damage_type": "Necrotic",
-        "damage_die": "1d8",
+        "damage_die": "8",
         "additional_damage": 0,
-        "spell_type": "Damage"
+        "spell_type": "Damage",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": 120,
+        "duration": 1,
+        "is_melee_spell_attack": false,
+        "requires_weapon_attack": false,
+        "hitpoint_block": null,
+        "gives_disadvantage": "Undead",
+        "upcast_type": "character_level",
+        "upcast": {
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        }
+    },
+    {
+        "name": "Create Bonfire",
+        "level": 0,
+        "damage_type": "Fire",
+        "damage_die": "8",
+        "additional_damage": 0,
+        "spell_type": "Damage",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": 60,
+        "duration": 10,
+        "is_melee_spell_attack": false,
+        "requires_weapon_attack": false,
+        "concentration": true,
+        "upcast_type": "character_level",
+        "upcast": {
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        },
+        "save": "DEX",
+        "persistant_hazard": true,
+        "damage_per_round": true
     },
     {
         "name": "Eldritch Blast",
         "level": 0,
         "damage_type": "Force",
-        "damage_die": "1d10",
+        "damage_die": "10",
         "additional_damage": 0,
-        "spell_type": "Damage"
+        "spell_type": "Damage",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": 120,
+        "duration": 0,
+        "is_melee_spell_attack": false,
+        "requires_weapon_attack": false,
+        "hitpoint_block": null,
+        "gives_disadvantage": null,
+        "upcast_type": "character_level",
+        "upcast": {
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        },
+        "multi-attack": true
     },
     {
         "name": "Fire Bolt",
         "level": 0,
         "damage_type": "Fire",
-        "damage_die": "1d10",
+        "damage_die": "10",
         "additional_damage": 0,
-        "spell_type": "Damage"
+        "spell_type": "Damage",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": 120,
+        "duration": 0,
+        "is_melee_spell_attack": false,
+        "requires_weapon_attack": false,
+        "hitpoint_block": null,
+        "gives_disadvantage": null,
+        "upcast_type": "character_level",
+        "upcast": {
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        },
+        "multi-attack": false
+    },
+    {
+        "name": "Frostbite",
+        "level": 0,
+        "damage_type": "Cold",
+        "damage_die": "6",
+        "additional_damage": 0,
+        "save": "CON",
+        "spell_type": "Damage",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": 60,
+        "duration": 0,
+        "multi-attack": false,
+        "upcast_type": "character_level",
+        "upcast": {
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        },
+        "gives_disadvantage": "Weapon Attack Next Turn"
+    },
+    {
+        "name": "Green-Flame Blade",
+        "level": 0,
+        "damage_type": "Fire",
+        "damage_die": "8",
+        "die_count": 0,
+        "additional_damage": 0,
+        "spell_type": "Buff-Same-Turn-Damage",
+        "components": ["M", "S"],
+        "casting_time": "1 Action",
+        "range": 5,
+        "duration": 0,
+        "max_targets": 2,
+        "radius": 5,
+        "requires_weapon_attack": true,
+        "upcast_type": "character_level",
+        "upcast": {
+            "5th": 1,
+            "11th": 2,
+            "17th": 3
+        },
+        "different_damage_on_secondary_target": true,
+        "secondary_target_damage_die": "8",
+        "secondary_target_die_count": 0,
+        "secondary_target_damage_type": "Fire",
+        "secondary_target_additional_damage": "{spellcasting_modifier}"
+    },
+    {
+        "name": "https://dnd5e.wikidot.com/spells"
     },
     {
         "name": "Mind Sliver",
         "level": 0,
         "damage_type": "Psychic",
-        "damage_die": "1d6",
+        "damage_die": "6",
         "additional_damage": 0,
-        "spell_type": "Damage"
+        "spell_type": "Damage",
+        "components": ["V"],
+        "casting_time": "1 Action",
+        "range": 120,
+        "duration": 1,
+        "is_melee_spell_attack": false,
+        "requires_weapon_attack": false,
+        "hitpoint_block": null,
+        "gives_disadvantage": null,
+        "upcast_type": "character_level",
+        "upcast": {
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        },
+        "multi-attack": false,
+        "save": "INT",
+        "target_next_saving_throw_penalty": 4
     },
     {
         "name": "Poison Spray",
         "level": 0,
         "damage_type": "Poison",
-        "damage_die": "1d12",
+        "damage_die": "12",
         "additional_damage": 0,
-        "spell_type": "Damage"
+        "spell_type": "Damage",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": 10,
+        "duration": 0,
+        "is_melee_spell_attack": false,
+        "requires_weapon_attack": false,
+        "hitpoint_block": null,
+        "gives_disadvantage": null,
+        "upcast_type": "character_level",
+        "upcast": {
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        },
+        "multi-attack": false,
+        "save": "CON"
     },
     {
         "name": "Primal Savagery",
         "level": 0,
         "damage_type": "Acid",
-        "damage_die": "1d10",
+        "damage_die": "10",
         "additional_damage": 0,
-        "spell_type": "Damage"
+        "spell_type": "Damage",
+        "components": ["S"],
+        "casting_time": "1 Action",
+        "range": 5,
+        "duration": 0,
+        "is_melee_spell_attack": true,
+        "requires_weapon_attack": false,
+        "hitpoint_block": null,
+        "gives_disadvantage": null,
+        "upcast_type": "character_level",
+        "upcast": { 
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        },
+        "multi-attack": false
     },
     {
         "name": "Ray of Frost",
         "level": 0,
         "damage_type": "Cold",
-        "damage_die": "1d8",
+        "damage_die": "8",
         "additional_damage": 0,
-        "spell_type": "Damage"
+        "spell_type": "Damage",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": 60,
+        "duration": 0,
+        "is_melee_spell_attack": false,
+        "requires_weapon_attack": false,
+        "hitpoint_block": null,
+        "gives_disadvantage": null,
+        "upcast_type": "character_level",
+        "upcast": { 
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        },
+        "multi-attack": false,
+        "speed_reduction": 10,
+        "speed_reduction_duration": 1
     },
     {
         "name": "Sapping Sting",
         "level": 0,
         "damage_type": "Necrotic",
-        "damage_die": "1d4",
+        "damage_die": "4",
         "additional_damage": 0,
-        "spell_type": "Damage"
+        "spell_type": "Damage",
+        "components": ["V", "S"],
+        "casting_time": "1 Action",
+        "range": 30,
+        "duration": 0,
+        "is_melee_spell_attack": false,
+        "requires_weapon_attack": false,
+        "hitpoint_block": null,
+        "gives_disadvantage": null,
+        "upcast_type": "character_level",
+        "upcast": { 
+            "5th": 2,
+            "11th": 3,
+            "17th": 4
+        },
+        "multi-attack": false,
+        "save": "CON",
+        "drop_prone": true
     },
     {
         "name": "Shocking Grasp",
         "level": 0,
         "damage_type": "Lightning",
-        "damage_die": "1d8",
+        "damage_die": "8",
         "additional_damage": 0,
         "spell_type": "Damage"
     },
@@ -83,7 +324,7 @@
         "name": "Toll the Dead",
         "level": 0,
         "damage_type": "Necrotic",
-        "damage_die": "1d12",
+        "damage_die": "12",
         "additional_damage": 0,
         "spell_type": "Damage"
     },
@@ -91,7 +332,7 @@
         "name": "Vicious Mockery",
         "level": 0,
         "damage_type": "Psychic",
-        "damage_die": "1d4",
+        "damage_die": "4",
         "additional_damage": 0,
         "spell_type": "Damage"
     },
@@ -162,7 +403,7 @@
         "name": "Witch Bolt",
         "level": 1,
         "damage_type": "Lightning",
-        "damage_die": "1d12",
+        "damage_die": "12",
         "additional_damage": 0,
         "spell_type": "Damage"
     },
@@ -179,7 +420,7 @@
         "name": "Crown of Madness",
         "level": 2,
         "damage_type": "Psychic",
-        "damage_die": "1d6",
+        "damage_die": "6",
         "additional_damage": 0,
         "spell_type": "Damage"
     },
@@ -214,7 +455,7 @@
         "name": "Spiritual Weapon",
         "level": 2,
         "damage_type": "Force",
-        "damage_die": "1d8",
+        "damage_die": "8",
         "additional_damage": 0,
         "spell_type": "Damage"
     },
@@ -222,7 +463,7 @@
         "name": "Bestow Curse",
         "level": 3,
         "damage_type": "Necrotic",
-        "damage_die": "1d8",
+        "damage_die": "8",
         "additional_damage": 0,
         "spell_type": "Damage"
     },
@@ -284,7 +525,7 @@
         "name": "Elemental Weapon",
         "level": 4,
         "damage_type": "Choice",
-        "damage_die": "1d4",
+        "damage_die": "4",
         "additional_damage": 0,
         "spell_type": "Damage"
     },
@@ -391,7 +632,7 @@
         "name": "Power Word Kill",
         "level": 9,
         "damage_type": "N/A",
-        "damage_die": "Instant",
+        "damage_die": "0",
         "additional_damage": 0,
         "spell_type": "Damage"
     },
